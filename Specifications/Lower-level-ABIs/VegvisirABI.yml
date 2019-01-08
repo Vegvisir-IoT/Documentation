@@ -1,0 +1,102 @@
+title: Vegvisir ABIs
+--
+
+Protobuf:
+  version: 3.0
+  objects:
+    SendResponse
+
+    SendRequest
+
+    Payload
+
+    PeerView
+
+    Location
+
+    Time
+
+    LocationServiceNotAvailableException
+
+    SendInteruptedException
+
+    RecvInteruptedException
+
+    ConnectionLostException
+
+    Connection
+
+    ConnectionCloseResponse
+
+functions:
+
+  onConnection(): Connection
+    description: block until a connection from remote nodes available. Return received connection.
+    arguments: null
+    return: Connection
+    threadSafe: True
+
+  send(Connection, Payload): SendResponse
+    description: send @payload to the @conn and return SendResponse which contains either a (ConnectionLostException or SendInteruptedException) or null
+    arguments:
+      payload:
+        type: Payload
+        description: a Payload protobuf object.
+      conn:
+        type: Connection
+        description: The connection to be used to send @payload to.
+    return: SendResponse
+
+  recv(Connection, *Callback(Payload)): void
+    description: register a callback listener function to handle payload from conn.
+    arguments:
+        conn:
+          type: Connection
+          description: The connection to be listen on.
+        callback:
+          type: *Function(Payload)
+          description: a function takes Payload as an argument.
+    return: null
+
+  close(Connection): ConnectionCloseResponse
+    description: close given connection. This call may interupt send and recv calls. Return ConnectionCloseResponse containing either ConnectionLostException if given connection is not active or not available, or null.
+    arguments:
+      conn:
+        type: Connection
+        description: the connection to be closed.
+    return: ConnectionCloseResponse
+
+  ignore(String userid, Long timeout): void
+    description: Ignore @userid for @timeout period in milliseconds. This is useful to avoid unnecessary back-to-back sync between two nodes.
+    arguments:
+      userid:
+        type: String
+        description: the unique identifier for the node to be ignored.
+      timeout:
+        type: Long
+        description: the amount of time to be ignored.
+    return: null
+
+  getView(): PeerView
+    description: Return a peer view containing a set of pairs of peer id and connection.
+    arguments: null
+    return: PeerView
+
+  getLocation(): LocationRequestResponse
+    description: Return a response object that contains either a GPS location object or A LocationServiceNotAvailableException object
+    arguments: null
+    return: LocationRequestResponse
+
+  getTime(): Long
+    description: Return time in milliseconds since Jan 1, 1970, 00:00:00.000 GMT.
+    arguments: null
+    return: Long
+    threadSafe: True
+
+  sign(Message): String
+    description: sign given message with private key
+    arguments:
+      message:
+        type: Payload
+        description: the message to be signed. This can be Charlotte block, vegvisir block or whatever wrapped inside Payload.
+    return: String
