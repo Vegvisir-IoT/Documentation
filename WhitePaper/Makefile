@@ -10,4 +10,5 @@ clean:
 	rm -f *.log
 	rm -f *.toc
 	rm -f *.idx
+	rm veg_white.pdf
 
