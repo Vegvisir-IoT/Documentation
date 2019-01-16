@@ -1,7 +1,8 @@
-The blockdag structure, or a DAG of blocks, is a key structure for the
+The blockdag, or a DAG of \emph{blocks}, is the key structure for the
 protocol.
 
-A \emph{block} is a public key certificate that consists of:
+\subsection{Block}
+A \textbf{block} is a public key certificate that consists of:
 \begin{itemize}
     \item a \emph{header}
     \begin{itemize}
@@ -11,11 +12,30 @@ A \emph{block} is a public key certificate that consists of:
     \item a \emph{body}
         \begin{itemize}
             \item{list of \emph{transactions}}
+                \begin{itemize}
+                    A \emph{transaction} is a pair. (\textbf{topic, event})
+                \end{itemize}
         \end{itemize}
     \item signature of the creator
         \begin{itemize}
-            \item{The signature cover the header and body}
+            \item{The signed items include the header and body}
         \end{itemize}
 \end{itemize}
-A \emph{transaction} is a pair. (\textbf{topic, event})
+A block is uniquely identified within a structure by the hash over all of its
+contents. Within the structure, there exists one unique block that has no
+parent hashes. The name of this block is the \textbf{genesis block}.
 
+\subsection{Blockdag}
+The blockdag structure can be defined as a DAG where the vertices are
+the blocks. The edges are originating at vertex and point towards the vertex
+described by the vertex's parent hash. The structure has the following
+constraints:
+\begin{enumerate}
+    \item{There exists a unique genesis block AND it is the \emph{sole} sink vertex}
+    \item{There exists a path from every block to the genesis block}
+    \item{There exists \textbf{no} edge $b_1 \rightarrow b_2$ if there is 
+    another path $b_1$ to $b_2$}
+\end{enumerate}
+The \textbf{frontier set} is the set of blocks on the DAG that have no
+successors (sources, given that blocks in the DAG point to their parent
+blocks).
