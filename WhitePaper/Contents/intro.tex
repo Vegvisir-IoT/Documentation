@@ -1,0 +1,20 @@
+
+\extrachap{Introduction}
+
+As presented in its introductory paper\cite{karlsson2018vegvisir}, Vegvisir is
+a tamperproof log that is often defined as a blockchain. It differs from other
+implementations in the fact it is low powered and does not require a
+stable network connectivity. In this paper, we will define 3 fundamental parts
+of the Vegvir structure:
+\begin{enumerate}
+    \item Vegvisir Core
+    \item Hardware Interface
+    \item Application Interface
+\end{enumerate}
+
+The \emph{Core} references the autonomous agent responsible for managing the
+tamperproof log and the subsequent CRDT list. The \emph{Hardware Interface}
+concerns the aspect of information transfer over a connection. This interface
+is utilized by the agent to gather or send information concerning the data
+structure. The \emph{Application Interface} is utilized to interact with the
+log.

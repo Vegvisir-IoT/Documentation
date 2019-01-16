@@ -1,0 +1,21 @@
+The blockdag structure, or a DAG of blocks, is a key structure for the
+protocol.
+
+A \emph{block} is a public key certificate that consists of:
+\begin{itemize}
+    \item a \emph{header}
+    \begin{itemize}
+        \item{identifier of the creator of the block}
+        \item{list of hashes of the parent blocks}
+    \end{itemize}
+    \item a \emph{body}
+        \begin{itemize}
+            \item{list of \emph{transactions}}
+        \end{itemize}
+    \item signature of the creator
+        \begin{itemize}
+            \item{The signature cover the header and body}
+        \end{itemize}
+\end{itemize}
+A \emph{transaction} is a pair. (\textbf{topic, event})
+

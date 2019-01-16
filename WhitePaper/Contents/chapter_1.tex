@@ -1,0 +1,24 @@
+
+\chapter{General Abstractions}
+% Abstractis a description of the chapter that would be available online.
+% Description will not appear in print.
+\abstract*{General Abstractions is the overview of all the state machine. The
+mechanisms describe are required for the Vegvisir structure to be enabled to
+work as described in the original paper. It is possible to have additional
+methods or functions within an agent.}
+
+\section{The State Machine}
+\label{sec:1}
+A state machine can be generally described as an autonomous agent that is
+encoded with variables to define its state. The machine transitions to
+different states by when given commands. In Vegvisir, the state machine is
+responsible for managing two items:
+\begin{enumerate}
+    \item Blockdag
+    \item CRDT List
+\end{enumerate}
+
+
+\section{Blockdag}
+\input{Contents/blockdag}
+\section{CRDT List}
