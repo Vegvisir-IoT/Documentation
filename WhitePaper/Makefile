@@ -1,8 +1,12 @@
 FLAGS=-interaction=nonstopmode
 
 notarealfile.pdf:
-	pdflatex ${FLAGS} veg_white.tex
-	pdflatex ${FLAGS} veg_white.tex
+	pdflatex ${flags} veg_white.tex
+	pdflatex ${flags} veg_white.tex
+	bibtex veg_white.aux
+	pdflatex ${flags} veg_white.tex
+	pdflatex ${flags} veg_white.tex
+
 
 clean:
 	rm -f *.dvi
