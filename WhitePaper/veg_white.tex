@@ -41,6 +41,14 @@
                        % your makeindex program
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Command to allow for headers at the top of certain pages
+\usepackage{titleps}
+\newpagestyle{withheadrule}{%
+ \headrule
+\sethead[\footnotesize\thepage][][\footnotesize\thechapter~\chaptertitle]{\footnotesize\thesection~\sectiontitle}{}{\footnotesize\thepage}
+\setfoot{}{}{}
+}
+\pagestyle{withheadrule}
 
 \begin{document}
 
@@ -55,21 +63,21 @@
 \include{Contents/acronym}
 \include{Contents/intro}
 \mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\include{Contents/part}
-\include{Contents/chapter}
+\include{Contents/part1}
+\include{Contents/chapter_1}
+\include{Contents/part2}
+\include{Contents/part3}
 \include{Contents/acknow}
-\include{Contents/appendix}
+\bibliographystyle{abbrv}
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliography{references}
+
+%\include{Contents/appendix}
 
 \backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\include{Contents/glossary}
-\include{Contents/solutions}
+%\include{Contents/glossary}
+%\include{Contents/solutions}
 \printindex
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \end{document}
-
-
-
-
-
