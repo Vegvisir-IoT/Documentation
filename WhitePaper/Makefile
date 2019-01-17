@@ -14,5 +14,6 @@ clean:
 	rm -f *.log
 	rm -f *.toc
 	rm -f *.idx
+	rm -f Contents/*.aux
 	rm veg_white.pdf
 
