@@ -1,20 +1,28 @@
-
-\extrachap{Introduction}
+\chapter*{Introduction}
+\chaptermark{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
 
 As presented in its introductory paper\cite{karlsson2018vegvisir}, Vegvisir is
-a tamperproof log that is often defined as a blockchain. It differs from other
-implementations in the fact it is low powered and does not require a
-stable network connectivity. In this paper, we will define 3 fundamental parts
-of the Vegvir structure:
+a tamperproof log that is partition-tolerant. Tamperproof logs, often defined
+as a blockchains, often have large power constraints that is associated with
+its security protocol, proof of work. This protocol allows for any entity to
+join the blockchain. Vegvisir differs from other implementations, because it is
+has a permissioned membership protocol and only supports Conflict-free
+replicated data types (CRDTs). The DAG structure itself creates a partial
+ordering, and the use of CRDTs means that transactions are communtative. These
+key differences contribute for its ability to be work on IoT devices and in
+environments with unstable network connectivity.
+
+In this paper, we will present the fundamental concepts required to being able
+to recreate Vegvisir. The information will be presented in the following order:
 \begin{enumerate}
+    \item General Overview
     \item Vegvisir Core
     \item Hardware Interface
     \item Application Interface
 \end{enumerate}
 
-The \emph{Core} references the autonomous agent responsible for managing the
-tamperproof log and the subsequent CRDT list. The \emph{Hardware Interface}
-concerns the aspect of information transfer over a connection. This interface
-is utilized by the agent to gather or send information concerning the data
-structure. The \emph{Application Interface} is utilized to interact with the
-log.
+As this paper is dedicated to the building of the protocol, some concepts be
+given a basic cursurary explanation. The explainations are enough to build the
+protocol, yet they are not complete in all cases. Therefore, citations will be
+included in the text and located in Section \ref{reference}.
