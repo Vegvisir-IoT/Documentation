@@ -1,0 +1,19 @@
+\section{Publish  Subscribe Implementation and API} \label{pubsub}
+In addition to the blockdag abstraction, nodes offer a simplified
+publish/subscribe abstraction.  There is a list of topics, and a node can
+subscribe to topics and publish to topics. The interface/implementation is
+something like this:
+\begin{itemize}
+    \item{ \textbf{prepare}(topic, event): create a new (topic, event)
+     transaction without publishing}
+    \item{ \textbf{flush}(): add one or more blocks with prepared transactions.
+    \\The order of the transactions in the blocks should correspond to the
+     order of preparation.}
+    \item{ \textbf{subscribe}(topic, listener):  listener(event) is invoked
+     each time a new event is received for the given topic.  Events are posted
+     in a total order that is consistent with the partial order of the events
+     in the blockdag.}
+\end{itemize}
+We will provide CRDT libraries so that applications can update CRDTs when they
+receive events.  Note that each block in a blockdag has a well-defined CRDT
+state.

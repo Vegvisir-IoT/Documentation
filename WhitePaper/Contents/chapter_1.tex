@@ -1,24 +1,32 @@
+\chapter{General Overview}
+\abstract*{General}
 
-\chapter{General Abstractions}
-% Abstractis a description of the chapter that would be available online.
-% Description will not appear in print.
-\abstract*{General Abstractions is the overview of all the state machine. The
-mechanisms describe are required for the Vegvisir structure to be enabled to
-work as described in the original paper. It is possible to have additional
-methods or functions within an agent.}
+\section{Description of Vegvisir Implementation}
 
-\section{The State Machine}
-\label{sec:1}
-A state machine can be generally described as an autonomous agent that is
-encoded with variables to define its state. The machine transitions to
-different states by when given commands. In Vegvisir, the state machine is
-responsible for managing two items:
+The Vegvisir blockchain is used to share information within a group of
+participants. The participants are defined prior to creation of the blockchain.
+This is also true concerning the type of information that is shared. The set-up
+is differs slightly from the instantiation of the database. The fundamental
+use of this structure is to ensure that events that happen in a distributed
+system are securely logged. The protocol has implications for food supply
+tracking, emergency response, food management and much more.
+
+%\begin{figure*}[!htbp]
+\begin{wrapfigure}{r}{0.25\textwidth}
+    %\centering
+    \includegraphics[scale=0.15]{Veg_Structure.png}
+    \caption{Vegvisir Structure}
+    \label{fig:structure}
+\end{wrapfigure}
+%\end{figure*}
+
+The implementation can be broken down into three different sections:
 \begin{enumerate}
-    \item Blockdag
-    \item CRDT List
+    \item{ Core }
+    \item{ Application layer }
+    \item{ Lægra }
 \end{enumerate}
-
-
-\section{Blockdag}
-\input{Contents/blockdag}
-\section{CRDT List}
+The figure \ref{fig:structure} shows the overview of the system. The
+\emph{core} is listed as "Vegvisir Protocol" in lavender. The application layer
+is above it, and Lægra can be represented by Protobuf,
+TrustZone, or any of the other included methods.

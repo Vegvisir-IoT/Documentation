@@ -1,0 +1,24 @@
+
+\chapter{Vegvisir Core}
+% Abstractis a description of the chapter that would be available online.
+% Description will not appear in print.
+\abstract*{This chapter is dedicated to the creation of the Vegsir Core.
+Definitions of key components, data structure defined, and the description of
+the basic operations that are performed within the core.}
+
+\section{The State Machine}
+\label{sec:1}
+A state machine can be generally described as an autonomous agent that is
+encoded with variables to define its state. The machine transitions to
+different states by when given commands. In Vegvisir, the state machine is
+responsible for managing the following items:
+\begin{enumerate}
+    \item Blockdag
+    \item Block cache
+    \item CRDT List
+\end{enumerate}
+
+
+\section{Blockdag}
+\input{Contents/blockdag}
+\section{CRDT List}

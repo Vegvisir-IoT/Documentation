@@ -1,5 +1,7 @@
-The blockdag, or a DAG of \emph{blocks}, is the key structure for the
-protocol.
+The blockdag, or a DAG of \emph{blocks}, is the key structure for the protocol.
+The state variables of Vegvisir are the blocks that are defined in the next
+section. In this section, we will describe the blocks, their orientation in the
+framework, the Block cache, and the reconcilliation protocol. 
 
 \subsection{Block}
 A \textbf{block} is a public key certificate that consists of:
@@ -13,7 +15,9 @@ A \textbf{block} is a public key certificate that consists of:
         \begin{itemize}
             \item{list of \emph{transactions}}
                 \begin{itemize}
-                    A \emph{transaction} is a pair. (\textbf{topic, event})
+                    A \emph{transaction} is a pair. (\textbf{topic, event}
+                    \footnote{events are CRDTs. Additional information in
+                     \ref{pubsub}})
                 \end{itemize}
         \end{itemize}
     \item signature of the creator
@@ -39,3 +43,4 @@ constraints:
 The \textbf{frontier set} is the set of blocks on the DAG that have no
 successors (sources, given that blocks in the DAG point to their parent
 blocks).
+
