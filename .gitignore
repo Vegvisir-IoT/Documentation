@@ -5,4 +5,5 @@
 *.swp
 *.bbl
 *.blg
+.DS_Store
 veg_white.pdf
