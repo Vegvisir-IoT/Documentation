@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%% book.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% veg_white.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % sample root file for the chapters of your "monograph"
 %
@@ -8,10 +8,12 @@
 
 
 % RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[graybox,envcountchap,sectrefs]{svmono}
-
-% choose options for [] as required from the list
-% in the Reference Guide
+% Fixes vector warnings
+\let\accentvec\vec
+    \documentclass[graybox,envcountchap,sectrefs]{svmono}
+    \let\spvec\vec
+    \let\vec\accentvec
+\usepackage{amsmath}
 
 \usepackage{mathptmx}
 \usepackage{helvet}
@@ -21,6 +23,7 @@
 \usepackage{type1cm}
 
 \usepackage{makeidx}         % allows index generation
+\usepackage{wrapfig}
 \usepackage{graphicx}        % standard LaTeX graphics tool
                              % when including figure files
 \graphicspath{{Figures/}}
@@ -41,14 +44,35 @@
                        % your makeindex program
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Command to allow for headers at the top of certain pages
-\usepackage{titleps}
-\newpagestyle{withheadrule}{%
- \headrule
-\sethead[\footnotesize\thepage][][\footnotesize\thechapter~\chaptertitle]{\footnotesize\thesection~\sectiontitle}{}{\footnotesize\thepage}
-\setfoot{}{}{}
+% Header Description
+
+\usepackage{newtxtext,newtxmath} % <--- not mathptmx
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RE]{\runheadsize\runheadstyle\leftmark}
+\fancyhead[LO]{\runheadsize\runheadstyle\rightmark}
+\fancyhead[LE,RO]{\runheadsize\runheadstyle\thepage}
+\fancypagestyle{plain}{%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyhf{}%
+  \fancyfoot[RE,LO]{\runheadsize\runheadstyle\thepage}%
 }
-\pagestyle{withheadrule}
+\makeatletter
+\renewcommand\chaptermark[1]{%
+  \markboth{%
+    \if@chapnum\thechapter\thechapterend\hskip\betweenumberspace\fi #1%
+  }{%
+    \if@chapnum\thechapter\thechapterend\hskip\betweenumberspace\fi #1%
+  }%
+}
+\renewcommand{\sectionmark}[1]{%
+  \markright{%
+    \ifnum\c@secnumdepth>\z@ \thesection\seccounterend\hskip\betweenumberspace\fi #1%
+  }%
+}
+\makeatother
 
 \begin{document}
 
@@ -63,14 +87,16 @@
 \include{Contents/acronym}
 \include{Contents/intro}
 \mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\include{Contents/part1}
 \include{Contents/chapter_1}
-\include{Contents/part2}
-\include{Contents/part3}
+\include{Contents/chapter_2}
+\include{Contents/chapter_3}
 \include{Contents/acknow}
+
+% Reference Section
 \bibliographystyle{abbrv}
 % argument is your BibTeX string definitions and bibliography database(s)
 \bibliography{references}
+\label{reference}
 
 %\include{Contents/appendix}
 
